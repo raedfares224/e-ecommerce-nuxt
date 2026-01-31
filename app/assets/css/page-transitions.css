@@ -1,0 +1,49 @@
+:root {
+  /* adjust these to taste */
+  --slide-distance: 40px;
+  --slide-duration: 0.6s;
+  --slide-easing-in: cubic-bezier(0.23, 1, 0.32, 1);
+  --slide-easing-out: ease-out;
+  --slide-blur: 4px;
+  --slide-scale-start: 0.98;
+  --slide-scale-end: 1;
+}
+
+.slide-v-gentle-enter-active,
+.slide-v-gentle-appear-active {
+  transition:
+    transform var(--slide-duration) var(--slide-easing-in),
+    opacity  var(--slide-duration) var(--slide-easing-out),
+    filter   var(--slide-duration) var(--slide-easing-out);
+}
+
+.slide-v-gentle-leave-active {
+  transition:
+    transform var(--slide-duration) var(--slide-easing-out),
+    opacity  var(--slide-duration) var(--slide-easing-out),
+    filter   var(--slide-duration) var(--slide-easing-out);
+}
+
+.slide-v-gentle-enter-from {
+  transform: translateY(calc(-1 * var(--slide-distance))) scale(var(--slide-scale-start));
+  opacity: 0;
+  filter: blur(var(--slide-blur));
+}
+
+.slide-v-gentle-enter-to {
+  transform: translateY(0) scale(var(--slide-scale-end));
+  opacity: 1;
+  filter: blur(0);
+}
+
+.slide-v-gentle-leave-from {
+  transform: translateY(0) scale(var(--slide-scale-end));
+  opacity: 1;
+  filter: blur(0);
+}
+
+.slide-v-gentle-leave-to {
+  transform: translateY(var(--slide-distance)) scale(var(--slide-scale-start));
+  opacity: 0;
+  filter: blur(var(--slide-blur));
+}
